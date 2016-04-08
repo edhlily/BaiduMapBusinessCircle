@@ -1,45 +1,58 @@
 package com.dragonsoftbravo.businesscircle.bean;
 
+import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
 
 import java.util.Collection;
 
-public abstract class Circle<T extends Item> extends Target {
-    protected boolean visiable;
+//表示圈
+public abstract class Circle extends Target {
+    //半径
+    double radius = 1000;
+    //圈的颜色
+    int bgColor = 0x99FF0000;
+    //圈的范围，东北角经纬度，西南角经纬度
+    private double nelatitude, nelongtitude, swlatitude, swlongtitude;
 
-    public abstract void setBounds(LatLngBounds bounds);
-
-    public abstract LatLngBounds getBounds();
-
-    public abstract void setRadius(double radius);
-
-    public abstract double getRadius();
-
-    public abstract Collection<T> getItems();
-
-    public abstract int getSize();
-
-    public abstract String getClusterName();
-
-    public boolean isVisiable() {
-        return visiable;
+    public void setBounds(LatLngBounds bounds) {
+        this.nelatitude = bounds.northeast.latitude;
+        this.nelongtitude = bounds.northeast.longitude;
+        this.swlatitude = bounds.southwest.latitude;
+        this.swlongtitude = bounds.southwest.longitude;
+        this.lat = bounds.getCenter().latitude;
+        this.lng = bounds.getCenter().longitude;
     }
 
-    public void setVisiable(boolean visiable) {
-        this.visiable = visiable;
+    public LatLngBounds getBounds() {
+        return new LatLngBounds.Builder()
+                .include(new LatLng(nelatitude, nelongtitude))
+                .include(new LatLng(swlatitude, swlongtitude)).build();
     }
 
-    @Override
-    public int hashCode() {
-        return getClusterName() == null ? super.hashCode() : getClusterName().hashCode();
+    public double getRadius() {
+        return radius;
     }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    public int getBgColor() {
+        return bgColor;
+    }
+
+    public void setBgColor(int bgColor) {
+        this.bgColor = bgColor;
+    }
+
+    public abstract Collection<? extends Item> getItems();
 
     @Override
     public boolean equals(Object o) {
         if (o instanceof Circle) {
-            if (getClusterName() == null || ((Circle) o).getClusterName() == null)
+            if (getName() == null || ((Circle) o).getName() == null)
                 return super.equals(o);
-            return getClusterName().equals(((Circle) o).getClusterName());
+            return getName().equals(((Circle) o).getName());
         }
         return false;
     }

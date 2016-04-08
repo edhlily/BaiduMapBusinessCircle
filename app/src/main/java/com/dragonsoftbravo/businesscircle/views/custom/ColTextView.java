@@ -158,7 +158,6 @@ public class ColTextView extends View {
         titlePaint.setTextSize(titleSize);
         int titleTextHeight = getTitleTextHeight();
         if (titleTextHeight == 0) return;
-//        canvas.drawText(title, 0, title.length(), viewPadding + (mViewWidth - 2 * viewPadding - getTitleWidth()) / 2, viewPadding + titleTextHeight, titlePaint);
         canvas.drawText(title, 0, title.length(), viewPadding + (mViewWidth - 2 * viewPadding - getTitleWidth()) / 2, getBottomY() - viewPadding, titlePaint);
     }
 

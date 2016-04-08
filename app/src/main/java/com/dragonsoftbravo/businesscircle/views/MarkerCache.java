@@ -1,4 +1,4 @@
-package com.dragonsoftbravo.businesscircle.utils;
+package com.dragonsoftbravo.businesscircle.views;
 
 import android.util.LruCache;
 

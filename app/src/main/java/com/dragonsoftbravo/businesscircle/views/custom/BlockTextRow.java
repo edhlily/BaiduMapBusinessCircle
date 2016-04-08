@@ -80,13 +80,6 @@ public class BlockTextRow extends View {
                 startX += getColItemWidth(item);
             }
         }
-//        for (int i = 0; i < colItems.size(); i++) {
-//            if (i % 3 == 0) {
-//                startX = blockWidth / 2;
-//            }
-//            draw(colItems.get(i), i / 3 + 1, startX, canvas);
-//            startX += getColItemWidth(colItems.get(i));
-//        }
     }
 
     private void drawBg(Canvas canvas) {

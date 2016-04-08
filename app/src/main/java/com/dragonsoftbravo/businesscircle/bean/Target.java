@@ -1,24 +1,31 @@
 package com.dragonsoftbravo.businesscircle.bean;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
-import com.dragonsoftbravo.businesscircle.utils.MarkerCache;
+import com.dragonsoftbravo.businesscircle.views.MarkerCache;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class Target implements Serializable {
+    //Item中心位置相对图标的位置（0.5和0.5表示中心点正好在图标中心点）
+    //f1表示水平中心位置，f2表示垂直中心位置
     protected float f1, f2;
+    //Mark的类型
     protected int markType;
-    protected double lat;
-    protected double lng;
+    //中心经纬度
+    protected double lat, lng;
+    //是否显示
+    protected boolean visiable;
+    //编号和名称，code可以改成Int型ID
+    protected String code, name;
+    //是否是显著的点，true的话图标会更大更显眼
+    protected boolean target;
+
+    int color;
 
     public int getMarkType() {
         return markType;
@@ -34,14 +41,55 @@ public abstract class Target implements Serializable {
     public abstract Bitmap getBitmap();
 
     public LatLng getPosition() {
-        if (lat < 3 || lat > 54) return null;
-        if (lng < 73 || lng > 174) return null;
         return new LatLng(lat, lng);
     }
 
     public void setPosition(LatLng position) {
         this.lat = position.latitude;
         this.lng = position.longitude;
+    }
+
+    public boolean isVisiable() {
+        return visiable;
+    }
+
+    public void setVisiable(boolean visiable) {
+        this.visiable = visiable;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isTarget() {
+        return target;
+    }
+
+    public void setTarget(boolean target) {
+        if (this.target != target) {
+            MarkerCache.get().remove(this);
+        }
+        this.target = target;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public MarkerOptions getMarkerOptions() {
@@ -53,34 +101,5 @@ public abstract class Target implements Serializable {
         return markerOptions;
     }
 
-    protected Bitmap compress(Bitmap bitmap) {
-        if (true) return bitmap;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, baos);
-        bitmap.recycle();
-        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-        bitmap = BitmapFactory.decodeStream(bais, null, null);
-        try {
-            bais.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            baos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return bitmap;
-    }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "f1=" + f1 +
-                ", f2=" + f2 +
-                ", markType=" + markType +
-                ", lat=" + lat +
-                ", lng=" + lng +
-                '}';
-    }
 }
