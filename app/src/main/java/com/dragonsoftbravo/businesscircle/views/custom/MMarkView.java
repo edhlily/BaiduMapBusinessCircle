@@ -18,7 +18,7 @@ public class MMarkView extends View {
     private int markHeight, markWidth;
     private int markerColor = Color.RED;
     private int markerTextColor = Color.WHITE;
-    private int markerTextBgColor = Color.parseColor("#88000000");
+    private int markerTextBgColor = Color.parseColor("#AA00ADFB");
     private String text = "测试测试测试测试商圈";
 
     public MMarkView(Context context) {

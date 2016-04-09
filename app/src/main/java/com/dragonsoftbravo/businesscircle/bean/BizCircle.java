@@ -33,11 +33,8 @@ public class BizCircle extends Circle {
             case TYPE_DEFAULT:
             default:
                 MMarkView mMarkView3 = new MMarkView(MApplication.get());
-                if (isTarget()) {
-                    mMarkView3.setLargerIcon();
-                } else {
-                    mMarkView3.setMarkerColor(Color.parseColor("#ff0000"));
-                }
+                mMarkView3.setMarkerColor(Color.parseColor("#0000FF"));
+                mMarkView3.setLargerIcon();
                 mMarkView3.setText(getName());
                 mMarkView3.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
                 mMarkView3.layout(0, 0, mMarkView3.getMeasuredWidth(), mMarkView3.getMeasuredHeight());

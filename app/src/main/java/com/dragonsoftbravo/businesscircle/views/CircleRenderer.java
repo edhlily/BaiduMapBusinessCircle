@@ -172,8 +172,8 @@ public class CircleRenderer implements BaiduMap.OnMapClickListener, BaiduMap.OnM
                 minMs = Math.abs(bilichi - CircleManager.ms[i]);
             }
         }
-        float newZoom = CircleManager.zs[zoomPosition] - 0.5f;
-        MapStatusUpdate u = MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().target(circle.getPosition()).build());
+        float newZoom = CircleManager.zs[zoomPosition];
+        MapStatusUpdate u = MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().target(circle.getPosition()).zoom(newZoom).build());
         mMap.animateMapStatus(u, 1000);
         removeBizCircle(circle);
         circle.setTarget(true);
@@ -218,7 +218,6 @@ public class CircleRenderer implements BaiduMap.OnMapClickListener, BaiduMap.OnM
                 circle.setMarkType(circleType);
             }
             circle.setVisiable(getScreenRadius(circle) > 50 || circle.isTarget());
-            renderBizCircleThread.render(circle);
             if (isShowBizItem) {
                 for (BizItem t : circle.getItems()) {
                     if (circle.isTarget()) {
@@ -229,6 +228,7 @@ public class CircleRenderer implements BaiduMap.OnMapClickListener, BaiduMap.OnM
                     renderBizItemThread.render(t);
                 }
             }
+            renderBizCircleThread.render(circle);
         }
     }
 
