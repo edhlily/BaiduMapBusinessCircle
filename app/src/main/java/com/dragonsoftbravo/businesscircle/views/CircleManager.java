@@ -22,7 +22,6 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class CircleManager implements BaiduMap.OnMapStatusChangeListener, BaiduMap.OnMapLoadedCallback {
-    public static final String CURCITY = "com.dragonsoftbravo.pss.CURCITY";
     public static final int[] ms = new int[]{10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 25000, 50000, 100000, 200000};
     public static final int[] zs = new int[]{20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6};
     public static double screenMWidth;
@@ -31,7 +30,6 @@ public class CircleManager implements BaiduMap.OnMapStatusChangeListener, BaiduM
     private final ReadWriteLock mClusterTaskLock = new ReentrantReadWriteLock();
     private CircleRenderer mRenderer;
     public static String curCity = "上海市";
-    //district为null时，是商圈界面的manager；不为null时，是门店界面的manager。
     private BaiduMap mMap;
     private ClusterTask mClusterTask;
 

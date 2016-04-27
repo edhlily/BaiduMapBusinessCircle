@@ -35,8 +35,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.0'
-    compile files('libs/baidumapapi_base_v3_7_1.jar')
-    compile files('libs/baidumapapi_map_v3_7_1.jar')
-    compile files('libs/baidumapapi_util_v3_7_1.jar')
-    compile files('libs/locSDK_6.23.jar')
+    compile files('libs/baidumapapi_base_v3_7_3.jar')
+    compile files('libs/baidumapapi_map_v3_7_3.jar')
+    compile files('libs/baidumapapi_util_v3_7_3.jar')
 }

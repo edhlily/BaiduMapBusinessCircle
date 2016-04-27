@@ -5,6 +5,9 @@ import android.util.LruCache;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.dragonsoftbravo.businesscircle.bean.Target;
 
+/**
+ * Mark缓存
+ */
 public class MarkerCache {
     private static MarkerCache markerCache = new MarkerCache();
 
@@ -12,7 +15,6 @@ public class MarkerCache {
         return markerCache;
     }
 
-    int MAXMEMONRY = (int) (Runtime.getRuntime().maxMemory() / 8192);
     LruCache<Target, MarkerOptions> markBitmapsCache = new LruCache<Target, MarkerOptions>(30) {
         @Override
         protected MarkerOptions create(Target key) {

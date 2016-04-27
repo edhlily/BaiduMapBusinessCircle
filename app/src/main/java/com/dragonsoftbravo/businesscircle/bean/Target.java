@@ -38,6 +38,11 @@ public abstract class Target implements Serializable {
         this.markType = markType;
     }
 
+    /**
+     * 通过类型获得Mark图标
+     *
+     * @return
+     */
     public abstract Bitmap getBitmap();
 
     public LatLng getPosition() {
@@ -78,7 +83,7 @@ public abstract class Target implements Serializable {
     }
 
     public void setTarget(boolean target) {
-        if (this.target != target) {
+        if (this.target ^ target) {
             MarkerCache.get().remove(this);
         }
         this.target = target;

@@ -87,7 +87,6 @@ public class CircleCache {
 
     private LatLngBounds getBonds(BizCircle circle) {
         boundsPos.clear();
-
         LatLngBounds.Builder llbb = new LatLngBounds.Builder();
         if (circle.getSize() == 1) {
             LatLng llCenter = null;

@@ -12,8 +12,6 @@ public class MApplication extends Application {
         return app;
     }
 
-    ;
-
     @Override
     public void onCreate() {
         super.onCreate();
