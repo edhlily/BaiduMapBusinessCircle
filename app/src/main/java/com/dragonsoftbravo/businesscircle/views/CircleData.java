@@ -27,9 +27,9 @@ public class CircleData {
                 circle.setName("商圈" + i * 4 + j);
                 circle.setColor(Color.GREEN);
                 circle.setBgColor(getCircleColoe());
-                for (int k = 0; k < 4; k++) {
+                for (int k = 0; k < 2; k++) {
                     double itemLng = circleLeftTopLng + (0.01 * k);
-                    for (int m = 0; m < 4; m++) {
+                    for (int m = 0; m < 2; m++) {
                         double itemLat = circleLeftTopLat - (0.01 * m);
                         item = new BizItem();
                         item.setCode("bizItemCode" + k * 4 + m);
